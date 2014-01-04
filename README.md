@@ -1,10 +1,12 @@
 socket-typeracer
 ========
-##Objective
-implementing a 2 player typeracer using websockets & node
+###Objective
+implementing a 2 player typeracer using websockets & node.js
 
-##Questions
+###Questions
 * shoe vs socket.io?
+* express.js?
+* jade?
 
-##Team
+###Team
 * tyler, rao, salar
