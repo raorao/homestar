@@ -42,8 +42,9 @@ function handler (request, response) {
 io.sockets.on('connection', function (socket) {
   socket.on('isCorrect',function(data){
     console.log('server recieved isCorrect')
-    console.log(data.data)
-    socket.emit('updateDOM', {data:'bullshit'})
+
+    console.log(data.playername)
+    socket.emit('updateDOM', {playername: data.playername})
   })
 });
 

@@ -8,6 +8,7 @@ Game.prototype = {
   },
 
   bindSocketListeners: function(){
+    //why is 'this' working?
     socket.on('updateDOM', this.updateDOM)
   },
 
@@ -16,13 +17,14 @@ Game.prototype = {
   },
 
   isCorrect: function(){
-    socket.emit('isCorrect', {data:'player1'})
+    socket.emit('isCorrect', {playername:'player1'})
     console.log('client sends isCorrect')
   },
 
-  updateDOM: function(){
+  updateDOM: function(data){
     //updatesMYdom
-    console.log('updateDOM')
+    console.log('updateDOM', data.playername)
+
   }
 }
 
