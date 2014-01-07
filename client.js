@@ -9,7 +9,7 @@ Game.prototype = {
 
   bindSocketListeners: function(){
     //why is 'this' working?
-    socket.on('updateDOM', this.updateDOM)
+    Server.socket.on('updateDOM', this.updateDOM)
   },
 
   bindEventListeners: function(){
@@ -17,26 +17,29 @@ Game.prototype = {
   },
 
   isCorrect: function(){
-    socket.emit('isCorrect', {playername:'player1'})
+    Server.socket.emit('isCorrect', {playername:'player1'})
     console.log('client sends isCorrect')
   },
 
   updateDOM: function(data){
     //updatesMYdom
     console.log('updateDOM', data.playername)
-
   }
 }
 
 
+Server = {
+  socket: io.connect('http://localhost')
+}
 
 
 function pageLoad(){
+
   var game = new Game
   $(document).ready(function(){
     game.init()
   })
-  var socket = io.connect(window.location.origin)
+  // var socket = io.connect(window.location.origin)
 }
 
 pageLoad()
