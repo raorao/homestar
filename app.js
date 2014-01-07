@@ -40,9 +40,15 @@ function handler (request, response) {
 }
 
 io.sockets.on('connection', function (socket) {
-  socket.on('data',function(){
-    console.log('IT WORKS')
+  socket.on('isCorrect',function(data){
+    console.log('server recieved isCorrect')
+    console.log(data.data)
+    socket.emit('updateDOM', {data:'bullshit'})
   })
 });
 
 
+//user1 types
+//iscorrect?
+//server emits updateDOM
+//client updatesDOM
