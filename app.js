@@ -22,20 +22,17 @@ function handler (request, response) {
   }
 
   path.exists(filePath, function(exists) {
-
     if (exists) {
       fs.readFile(filePath, function(error, content) {
         if (error) {
           response.writeHead(500);
           response.end();
-        }
-        else {
+        } else {
           response.writeHead(200, { 'Content-Type': contentType });
           response.end(content, 'utf-8');
         }
       });
-    }
-    else {
+    } else {
       response.writeHead(404);
       response.end();
     }
@@ -43,7 +40,9 @@ function handler (request, response) {
 }
 
 io.sockets.on('connection', function (socket) {
-
+  socket.on('data',function(){
+    console.log('IT WORKS')
+  })
 });
 
 
