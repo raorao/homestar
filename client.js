@@ -5,11 +5,13 @@ Game.prototype = {
   init: function(){
     this.bindSocketListeners()
     this.bindEventListeners()
+    Server.getPlayerNumber()
   },
 
   bindSocketListeners: function(){
     //why is 'this' working?
     Server.socket.on('updateDOM', this.updateDOM)
+    Server.socket.on('setPlayerNumber', this.setPlayerNumber)
   },
 
   bindEventListeners: function(){
@@ -17,19 +19,27 @@ Game.prototype = {
   },
 
   isCorrect: function(){
-    Server.socket.emit('isCorrect', {playername:'player1'})
-    console.log('client sends isCorrect')
+    // var number = Server.getPlayerNumber();
+    Server.socket.emit('isCorrect', {playerNumber: Server.number })
   },
 
   updateDOM: function(data){
     //updatesMYdom
-    console.log('updateDOM', data.playername)
+    console.log('updateDOM', data.playerNumber)
+  },
+
+  setPlayerNumber: function(data) {
+    Server.number = data.playerNumber
   }
 }
 
 
 Server = {
-  socket: io.connect('http://localhost')
+  socket: io.connect('http://localhost'),
+
+  getPlayerNumber: function(){
+    this.socket.emit('getPlayerNumber')
+  }
 }
 
 
@@ -39,7 +49,6 @@ function pageLoad(){
   $(document).ready(function(){
     game.init()
   })
-  // var socket = io.connect(window.location.origin)
 }
 
 pageLoad()
