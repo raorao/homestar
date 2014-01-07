@@ -40,12 +40,17 @@ function handler (request, response) {
 }
 
 io.sockets.on('connection', function (socket) {
+  //------------------------//
+  //    updateDOM           //
+  //------------------------//
   socket.on('isCorrect',function(data){
     console.log('server recieved isCorrect')
-
     io.sockets.emit('updateDOM', {playerNumber: data.playerNumber})
   });
 
+  //------------------------//
+  //     get/set Players    //
+  //------------------------//
   socket.on('getPlayerNumber',function() {
     var number = io.sockets.clients().length
     socket.emit('setPlayerNumber', { playerNumber : number } )
