@@ -39,10 +39,23 @@ function handler (request, response) {
   })
 }
 
-io.sockets.on('connection', function (socket) {
-  socket.on('data',function(){
-    console.log('IT WORKS')
+io.sockets.on('connection', function ( socket ) {
+
+  socket.on('getPlayerNumber',function() {
+    var number = io.sockets.clients().length
+    socket.emit('setPlayerNumber', { playerNumber : number })
   })
+
+  socket.on('isCorrect',function( data ){
+    console.log('server recieved isCorrect')
+    io.sockets.emit('updateDOM', { playerNumber: data.playerNumber })
+  });
+
 });
 
 
+//user1 types
+//iscorrect?
+//server emits updateDOM
+//client updatesDOM
+//disable input field until 2 players
