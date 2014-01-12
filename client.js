@@ -11,7 +11,7 @@ Game.prototype = {
   },
 
   bindSocketListeners: function(){
-    //if we don't bind 'this' here, the value of 'this' within the callback functions is the socket.
+    //if we don't bind 'this' here, the value of 'this' within the callback functions is the socket namespace.
     this.socket.on('setPlayerNumber', this.setPlayerNumber.bind(this) )
     this.socket.on('updateDOM', this.updateDOM.bind(this) )
   },
