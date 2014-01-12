@@ -1,54 +1,43 @@
 function Game(){
+  this.init()
 }
 
 Game.prototype = {
   init: function(){
+    this.socket = io.connect(window.location.origin)
+    this.getPlayerNumber()
     this.bindSocketListeners()
     this.bindEventListeners()
-    Server.getPlayerNumber()
   },
 
   bindSocketListeners: function(){
-    //why is 'this' working?
-    Server.socket.on('updateDOM', this.updateDOM)
-    Server.socket.on('setPlayerNumber', this.setPlayerNumber)
+    //if we don't bind 'this' here, the value of 'this' within the callback functions is the socket.
+    this.socket.on('setPlayerNumber', this.setPlayerNumber.bind(this) )
+    this.socket.on('updateDOM', this.updateDOM.bind(this) )
   },
 
   bindEventListeners: function(){
-    $('#field').keypress(this.isCorrect)
+    $('#field').keypress( this.isCorrect.bind(this) )
   },
-
-  isCorrect: function(){
-    // var number = Server.getPlayerNumber();
-    Server.socket.emit('isCorrect', {playerNumber: Server.number })
-  },
-
-  updateDOM: function(data){
-    //updatesMYdom
-    console.log('updateDOM', data.playerNumber)
-  },
-
-  setPlayerNumber: function(data) {
-    Server.number = data.playerNumber
-  }
-}
-
-
-Server = {
-  socket: io.connect('http://localhost'),
 
   getPlayerNumber: function(){
     this.socket.emit('getPlayerNumber')
+  },
+
+  setPlayerNumber: function(data) {
+    this.number = data.playerNumber
+    console.log( 'player number: ', this.number )
+  },
+
+  isCorrect: function(){
+    this.socket.emit('isCorrect', {playerNumber: this.number })
+  },
+
+  updateDOM: function(data){
+    console.log( 'updateDOM', data.playerNumber )
   }
 }
 
-
-function pageLoad(){
-
+$(document).ready(function(){
   var game = new Game
-  $(document).ready(function(){
-    game.init()
-  })
-}
-
-pageLoad()
+})
