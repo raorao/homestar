@@ -48,7 +48,7 @@ io.sockets.on('connection', function ( socket ) {
 
   socket.on('isCorrect',function( data ){
     console.log('server recieved isCorrect')
-    socket.emit('updateDOM', { playerNumber: data.playerNumber })
+    io.sockets.emit('updateDOM', { playerNumber: data.playerNumber })
   });
 
 });
