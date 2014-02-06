@@ -17,7 +17,7 @@ Game.prototype = {
   },
 
   bindEventListeners: function(){
-    $('#field').keypress( this.isCorrect.bind(this) )
+    $('#field').keyup( this.isCorrect.bind(this) )
   },
 
   getPlayerNumber: function(){
@@ -34,7 +34,22 @@ Game.prototype = {
   },
 
   isCorrect: function(){
-    this.socket.emit('isCorrect', {playerNumber: this.number })
+    var reg = new RegExp($('#field').val())
+    var tof = $('#sample').text()
+    if (reg.test(tof)) {
+      var trueStyles = {
+        background: "green",
+        color: "white"
+      }
+      $('#field').css(trueStyles)
+      this.socket.emit('isCorrect', {playerNumber: this.number })
+    } else {
+      falseStyles = {
+        background: "red",
+        color: "white"
+      }
+      $('#field').css(falseStyles)
+    }
   },
 }
 
