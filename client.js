@@ -26,7 +26,7 @@ Game.prototype = {
 
   setPlayerNumber: function(data) {
     this.number = data.playerNumber
-    console.log( 'player number: ', this.number )
+    console.log('player number: ', this.number)
   },
 
   updateDOM: function(data){
