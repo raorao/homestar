@@ -48,10 +48,7 @@ Game.prototype = {
       $('#field').css(trueStyles)
       this.socket.emit('isCorrect', {playerNumber: this.number })
     } else {
-      falseStyles = {
-        background: "red",
-        color: "white"
-      }
+      falseStyles = {background: "red"}
       $('#field').css(falseStyles)
     }
   },
