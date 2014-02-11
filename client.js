@@ -30,7 +30,11 @@ Game.prototype = {
   },
 
   updateDOM: function(data){
-    console.log('updateDOM', data.playerNumber)
+    var temp = data.playerNumber
+    var player = $('body').find("[data-player='" + temp + "']")
+    var current = player.attr('data-position')
+    player.attr('data-position', parseInt(current) + 1 )
+    console.log('updateDOM: ', data.playerNumber)
   },
 
   isCorrect: function(){
