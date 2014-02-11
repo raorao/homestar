@@ -3,7 +3,7 @@ var app = require('http').createServer(handler)
 , fs = require('fs')
 , path = require('path')
 
-app.listen(8000);
+app.listen(process.env.PORT || 8000);
 
 function handler (request, response) {
   var filePath = '.' + request.url;
