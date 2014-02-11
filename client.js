@@ -26,28 +26,44 @@ Game.prototype = {
 
   setPlayerNumber: function(data) {
     this.number = data.playerNumber
-    console.log( 'player number: ', this.number )
+    console.log('player number: ', this.number)
   },
 
   updateDOM: function(data){
-    console.log('updateDOM', data.playerNumber)
+    var temp = data.playerNumber
+    var player = $('body').find("[data-player='" + temp + "']")
+    var current = player.attr('data-position')
+    player.attr('data-position', parseInt(current) + 1 )
+    console.log('updateDOM: ', data.playerNumber)
   },
 
-  isCorrect: function(){
-    var reg = new RegExp($('#field').val())
-    var tof = $('#sample').text()
-    if (reg.test(tof)) {
-      var trueStyles = {
-        background: "green",
-        color: "white"
-      }
+  keyCodeChecker: function(key) {
+    if ((key >= 65 && key <= 90) // word char
+      || (key >= 48 && key <= 57) // digits
+      || key === 190) // period
+      // does not account for MOST punctuation... FML
+      {
+      return true
+    }
+  },
+
+  //this is kinda fuqqed. regexp suck.
+  isCorrect: function(data){
+    var key = data.keyCode
+    var initialValue = $('#field').val()
+    var period = /\./gi
+    var inputValues = initialValue.replace(period, "\\.")
+    var reg = new RegExp('^' + inputValues)
+    var bodyText = $('#sample').text()
+
+    if ((reg.test(bodyText)) && (this.keyCodeChecker(key))) {
+      var trueStyles = {background: "green"}
       $('#field').css(trueStyles)
       this.socket.emit('isCorrect', {playerNumber: this.number })
+    } else if (reg.test(bodyText)) {
+      $('#field').css(trueStyles)
     } else {
-      falseStyles = {
-        background: "red",
-        color: "white"
-      }
+      falseStyles = {background: "red"}
       $('#field').css(falseStyles)
     }
   },
