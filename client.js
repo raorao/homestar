@@ -37,16 +37,31 @@ Game.prototype = {
     console.log('updateDOM: ', data.playerNumber)
   },
 
-  isCorrect: function(){
-    var reg = new RegExp($('#field').val())
-    var tof = $('#sample').text()
-    if (reg.test(tof)) {
-      var trueStyles = {
-        background: "green",
-        color: "white"
-      }
+  keyCodeChecker: function(key) {
+    if ((key >= 65 && key <= 90) // word char
+      || (key >= 48 && key <= 57) // digits
+      || key === 190) // period
+      // does not account for MOST punctuation... FML
+      {
+      return true
+    }
+  },
+
+  //this is kinda fuqqed. regexp suck.
+  isCorrect: function(data){
+    var key = data.keyCode
+    var initialValue = $('#field').val()
+    var period = /\./gi
+    var inputValues = initialValue.replace(period, "\\.")
+    var reg = new RegExp('^' + inputValues)
+    var bodyText = $('#sample').text()
+
+    if ((reg.test(bodyText)) && (this.keyCodeChecker(key))) {
+      var trueStyles = {background: "green"}
       $('#field').css(trueStyles)
       this.socket.emit('isCorrect', {playerNumber: this.number })
+    } else if (reg.test(bodyText)) {
+      $('#field').css(trueStyles)
     } else {
       falseStyles = {background: "red"}
       $('#field').css(falseStyles)
