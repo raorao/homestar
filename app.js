@@ -39,10 +39,13 @@ function handler (request, response) {
   })
 }
 
+var allClients = []
 io.sockets.on('connection', function ( socket ) {
 
   socket.on('getPlayerNumber',function() {
-    var number = io.sockets.clients().length
+    allClients.push(socket.id)
+    console.log(allClients)
+    var number = allClients.length
     socket.emit('setPlayerNumber', { playerNumber : number })
   })
 
@@ -50,6 +53,14 @@ io.sockets.on('connection', function ( socket ) {
     console.log('server recieved isCorrect')
     io.sockets.emit('updateDOM', { playerNumber: data.playerNumber })
   });
+
+  socket.on('disconnect', function() {
+    console.log('Adios muchacho!')
+
+    var i = allClients.indexOf(socket.id)
+    allClients.splice(i, 1)
+    console.log(allClients)
+  })
 
 });
 
