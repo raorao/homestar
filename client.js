@@ -4,7 +4,7 @@ function Game(){
 
 Game.prototype = {
   init: function(){
-    this.socket = io.connect(window.location.origin)
+    this.socket = io.connect('ws://' + window.location.host)
     this.getPlayerNumber()
     this.bindSocketListeners()
     this.bindEventListeners()
