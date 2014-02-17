@@ -1,0 +1,109 @@
+<html>
+<head>
+<style>
+.homestar {
+  text-align: center;
+}
+.torso {
+  z-index: 10;
+  margin: 0 auto;
+  margin-bottom: -10px;
+  height: 0px;
+  width: 140px;
+  position: relative;
+  border-bottom: 200px solid red;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  /*border-radius: 0px 0px 60px 100px;*/
+  border-bottom-left-radius: 150px 70px;
+  border-bottom-right-radius: 100px 25px;
+}
+
+.lower-body {
+  margin-left: 20px;
+}
+
+.left-leg {
+  z-index: 1;
+  display: inline-block;
+  height: 0px;
+  width: 30px;
+  border-left: 15px solid transparent;
+  border-bottom: 300px solid grey;
+}
+
+.right-leg {
+  margin: 0;
+  display: inline-block;
+  height: 0px;
+  width: 30px;
+  border-bottom: 300px solid black;
+  border-right: 15px solid transparent;
+}
+
+.foot {
+  width: 280px;
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+  margin-top: -10px;
+  border-bottom: 60px solid grey;
+  display: block;
+  border-top-right-radius: 400px 200px;
+  border-top-left-radius: 400px 200px;
+}
+
+.left-sole {
+  display: inline-block;
+  width: 140px;
+  border-bottom: 40px solid blue;
+  border-bottom-left-radius: 50px 15px;
+  border-bottom-right-radius: 50px 15px;
+}
+
+.left-sole:after {
+  display: block;
+  content: '';
+  width: 140px;
+  border-bottom: 15px solid grey;
+  border-bottom-left-radius: 50px 15px;
+  border-bottom-right-radius: 50px 15px;
+  margin-bottom: -15px;
+}
+
+.right-sole {
+  display: inline-block;
+  width: 140px;
+  border-bottom: 40px solid violet;
+  border-bottom-left-radius: 70px 15px;
+  border-bottom-right-radius: 70px 15px;
+}
+
+.right-sole:after {
+  display: block;
+  content: '';
+  width: 140px;
+  border-bottom: 15px solid grey;
+  border-bottom-left-radius: 50px 15px;
+  border-bottom-right-radius: 50px 15px;
+  margin-bottom: -15px;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<div class="homestar">
+  <div class="torso"></div>
+  <div class="lower-body">
+    <div class="left-leg"></div><div class="right-leg"></div>
+    <div class="foot"></div>
+    <div class="left-sole"></div><div class="right-sole"></div>
+    <div class="rao"></div>
+  </div>
+</div>
+
+</body>
+</html>
