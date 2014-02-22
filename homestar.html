@@ -4,6 +4,65 @@
 .homestar {
   text-align: center;
 }
+
+.chin {
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  position: relative;
+  left: 10px;
+  border-left: 50px solid transparent;
+  border-right: 90px solid transparent;
+  border-bottom: 75px solid black;
+  border-top-right-radius: 100px 100px;
+}
+
+.chin:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100px;
+  height: 0px;
+  top: -40px;
+  margin-left: 15px;
+  border-top: 40px solid grey;
+  border-top-left-radius: 50px 40px;
+  border-top-right-radius: 50px 40px;
+  margin-top: 50px;
+  -webkit-transform: rotate(40deg);
+       /*-moz-transform: rotate(45deg);*/
+        /*-ms-transform: rotate(45deg);*/
+         /*-o-transform: rotate(45deg);*/
+            /*transform: rotate(45deg);*/
+
+}
+
+.chin:after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 40px;
+  border-top: 35px solid grey;
+  border-top-left-radius: 50px 80px;
+  border-top-right-radius: 60px 90px;
+  -webkit-transform: rotate(-55deg);
+  right: 5px;
+  top: -10px;
+}
+
+.mouth {
+  height: 0px;
+  margin: 0 auto;
+  position: relative;
+  right: 10px;
+  width: 138px;
+  border-top: 80px solid grey;
+  border-left: 30px solid transparent;
+  border-right: 10px solid transparent;
+  /*border-top-right-radius: 100px 10px;*/
+
+}
+
 .torso {
   z-index: 10;
   margin: 0 auto;
@@ -96,6 +155,8 @@
 <body>
 
 <div class="homestar">
+  <div class="chin"></div>
+  <div class="mouth"></div>
   <div class="torso"></div>
   <div class="lower-body">
     <div class="left-leg"></div><div class="right-leg"></div>
