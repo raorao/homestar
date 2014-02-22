@@ -6,7 +6,12 @@
   text-align: center;
 }
 
-.chin {
+.face {
+    margin: 0px auto;
+    text-align: center;
+}
+
+.forehead {
   margin: 0 auto;
   width: 0;
   height: 0;
@@ -18,7 +23,7 @@
   border-top-right-radius: 100px 100px;
 }
 
-.chin:before {
+.forehead:before {
   position: absolute;
   display: block;
   content: '';
@@ -38,7 +43,7 @@
 
 }
 
-.chin:after {
+.forehead:after {
   position: absolute;
   display: block;
   content: '';
@@ -79,7 +84,6 @@
   border-bottom: 200px solid red;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  /*border-radius: 0px 0px 60px 100px;*/
   border-bottom-left-radius: 150px 70px;
   border-bottom-right-radius: 100px 25px;
 }
@@ -220,8 +224,12 @@
 <body>
 
 <div class="homestar">
-  <div class="chin"></div>
-  <div class="mouth"></div>
+  <div class="face">
+    <div class="forehead">
+      <span class='eyes'>''</span>
+    </div>
+    <div class="chin"></div>
+  </div>
   <div class="torso"></div>
     <div class="shirt"></div>
     <div class="star-five"></div>
