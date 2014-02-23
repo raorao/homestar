@@ -77,11 +77,36 @@ body {
   position: relative;
   right: 10px;
   width: 138px;
+  border-top: 80px solid grey;
+  border-left: 30px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.chin:after {
+  content: '';
+  height: 0px;
+  margin: 0 auto;
+  position: absolute;
+  top: -80px;
+  right: -8px;
+  width: 134px;
   border-top: 80px solid white;
   border-left: 30px solid transparent;
   border-right: 10px solid transparent;
-  /*border-top-right-radius: 100px 10px;*/
+}
 
+.chin:before {
+  content: '';
+  z-index: 30;
+  height: 0px;
+  width: 80px;
+  border-bottom: 5px solid grey;
+  display: block;
+  position: absolute;
+  top: -84px;
+  left: -29px;
+  border-top-left-radius: 50px 15px;
+  border-top-right-radius: 50px 15px;
 }
 
 .torso {
