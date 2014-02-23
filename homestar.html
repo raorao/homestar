@@ -3,9 +3,10 @@
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <style>
 body {
-  background-color: grey;
+  background-color: yellow;
 }
 .homestar {
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -90,7 +91,7 @@ body {
 }
 
 .shirt {
-  z-index: 10;
+  z-index: 20;
   margin: 0 auto;
   margin-bottom: -10px;
   height: 0px;
@@ -167,7 +168,8 @@ body {
 
 .left-leg {
   margin: 0 auto;
-  z-index: 1;
+  z-index: 10;
+  position: relative;
   display: inline-block;
   height: 0px;
   width: 30px;
@@ -175,8 +177,24 @@ body {
   border-bottom: 300px solid white;
 }
 
+.left-leg:after {
+  content: '';
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  height: 0px;
+  width: 20px;
+  margin-left: 30px;
+  border-left: 0px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 300px solid rgba(135,135,135,1);
+}
+
 .right-leg {
   margin: 0 auto;
+  z-index: 10;
+  position: relative;
   display: inline-block;
   height: 0px;
   width: 30px;
@@ -184,25 +202,52 @@ body {
   border-right: 15px solid transparent;
 }
 
-.foot {
-  width: 280px;
-  position: relative;
-  z-index: 10;
+.right-leg:after {
+  content: '';
+  width: 2px;
+  z-index: 1;
+  position: absolute;
+  border-bottom: 360px solid grey;
+  margin-left: -10px;
+}
+
+.leg-border {
+  content: '';
   margin: 0 auto;
-  margin-top: -10px;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  height: 0px;
+  width: 20px;
+  margin-left: -46px;
+  border-left: 15px solid transparent;
+  border-right: 0px solid transparent;
+  border-bottom: 300px solid rgba(135,135,135,1);
+}
+
+.foot {
+  width: 276px;
+  position: relative;
+  z-index: -1;
+  margin: 0 auto;
+  margin-top: -1px;
+  margin-bottom: -5px;
   border-bottom: 60px dashed white;
-  border-color:;
   display: block;
   border-top-right-radius: 400px 200px;
   border-top-left-radius: 400px 200px;
+  box-shadow: 0px 0px 1px 3px rgba(135,135,135,1);
 }
 
 .left-sole {
   display: inline-block;
   width: 140px;
+  position: relative;
+  z-index: 30;
   border-bottom: 40px solid rgba(36,44,130,1);
   border-bottom-left-radius: 50px 15px;
   border-bottom-right-radius: 50px 15px;
+  box-shadow: 0px 5px 1px 1px rgba(135,135,135,1);
 }
 
 .left-sole:after {
@@ -216,11 +261,15 @@ body {
 }
 
 .right-sole {
+  z-index: 30;
   display: inline-block;
+  position: relative;
   width: 140px;
   border-bottom: 40px solid rgba(36,44,130,1);
   border-bottom-left-radius: 70px 15px;
   border-bottom-right-radius: 70px 15px;
+  box-shadow: 0px 5px 1px 1px rgba(135,135,135,1);
+
 }
 
 .right-sole:after {
@@ -251,7 +300,7 @@ body {
     <div class="star-five"></div>
   </div>
   <div class="lower-body">
-    <div class="left-leg"></div><div class="right-leg"></div>
+    <div class="left-leg"></div><span class="leg-border"></span><div class="right-leg"></div>
     <div class="foot"></div>
     <div class="left-sole"></div><div class="right-sole"></div>
     <div class="rao"></div>
