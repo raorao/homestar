@@ -23,8 +23,7 @@ body {
   left: 10px;
   border-left: 50px solid transparent;
   border-right: 90px solid transparent;
-  border-bottom: 75px solid white;
-  border-top-right-radius: 100px 100px;
+  border-bottom: 75px solid grey;
 }
 
 .forehead:before {
@@ -59,16 +58,43 @@ body {
   top: -10px;
 }
 
-.eyes {
+.head {
   color: black;
   display: block;
   position: relative;
   font-size: 80px;
   font-family: 'Varela Round', sans-serif;
-  top: -30px;
+  top: 67px;
   left: 20px;
   -webkit-transform: rotate(180deg);
+}
 
+.eyes {
+  -webkit-transform: rotate(180deg);
+  z-index: 1000;
+  position: absolute;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 80px;
+  color: black;
+  display: inline;
+  margin-left: -30;
+  top: 10px;
+  /*left: 100px;*/
+  -webkit-transform: rotate(180deg);
+}
+
+.head:before {
+  z-index: 5;
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -70px;
+  top: -9px;
+  border-left: 90px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 72px solid white;
 }
 
 .chin {
@@ -315,8 +341,9 @@ body {
 <div class="homestar">
   <div class="face">
     <div class="forehead">
-      <span class='eyes'>''</span>
+      <span class='head'></span>
     </div>
+    <span class='eyes'>''</span>
     <div class="chin"></div>
   </div>
   <div class="torso"></div>
